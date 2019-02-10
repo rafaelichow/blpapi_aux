@@ -1,10 +1,16 @@
 import pandas as pd
 import numpy as np
 import blpapi
-import tia.bbg.datamgr as dm
-
 
 def isin_bloomberg(isin):
+    """
+    This function takes an isin as an input and returns
+    a Bloomberg ticker as an output.
+
+    The order of priority when searching for indexes is to first
+    look for Brazilian tickers, then look for American tickers and
+    finally look for European tickers
+    """
     db = pd.read_csv('isin_database.csv',dtype={'ticker': str}).set_index('isin')
     if pd.notnull(isin):
 
